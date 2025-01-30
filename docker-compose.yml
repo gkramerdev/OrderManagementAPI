@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_DB: gestao_pedidos
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5433:5432"  # Acesso externo via porta 5433
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - ordermanagementapi  # Garantir que o postgres e pgadmin compartilhem a mesma rede
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"  # Acesso ao pgAdmin via porta 5050
+    depends_on:
+      - postgres
+    networks:
+      - ordermanagementapi  # A mesma rede que o postgres
+
+networks:
+  ordermanagementapi:  # Definição explícita da rede
+    driver: bridge  # Usando driver padrão "bridge"
+
+volumes:
+  postgres_data:  # Volume para persistência dos dados do PostgreSQL
