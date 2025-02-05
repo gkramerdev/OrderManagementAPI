@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using OrderManagementAPI.DTO;
 using OrderManagementAPI.Models;
-using OrderManagementAPI.Repositories;
+using OrderManagementAPI.Repositories.User;
 
 namespace OrderManagementAPI.Services
 {
@@ -46,6 +46,16 @@ namespace OrderManagementAPI.Services
             return token.ToString();
         }
 
+        public async Task<List<UserModel>> GetAllUsersAsync()
+        {
+            return await _userRespository.GetAllUsersAsync();
+        }
+
+        public async Task<UserModel> GetUserByIdAsync(int id)
+        {
+            return await _userRespository.GetUserByIdAsync(id);
+        }
+
         private string GenerateJwtToken(UserModel user)
         {
             var claims = new[]
@@ -68,6 +78,9 @@ namespace OrderManagementAPI.Services
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+
+
+        
     }
 
 }

@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using OrderManagementAPI.Infra;
-using OrderManagementAPI.Repositories;
+using OrderManagementAPI.Repositories.Order;
+using OrderManagementAPI.Repositories.User;
 using OrderManagementAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -29,10 +30,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Adicionar o repositório
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+
 
 // Registrar o UserService
 builder.Services.AddScoped<UserService>();  // Registre o UserService aqui
-
+builder.Services.AddScoped<OrderService>();
 // Adicionar os serviços de controllers e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

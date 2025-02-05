@@ -46,6 +46,42 @@ namespace OrderManagementAPI.Controllers
                 return Unauthorized(new { message = ex.Message });
             }
         }
+
+
+        [HttpGet("all")]
+        public async Task<ActionResult<List<UserModel>>> GetAllUsers()
+        {
+            try
+            {
+                var users = await _userService.GetAllUsersAsync();
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserModel>> GetUserById(int id)
+        {
+            try
+            {
+                var user = await _userService.GetUserByIdAsync(id);
+                if (user == null)
+                {
+                    return NotFound(new { message = "Usuário não encontrado" });
+                }
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
     }
 
 

@@ -2,7 +2,7 @@
 using OrderManagementAPI.Infra;
 using OrderManagementAPI.Models;
 
-namespace OrderManagementAPI.Repositories
+namespace OrderManagementAPI.Repositories.User
 {
     public class UserRepository : IUserRepository
     {
@@ -27,5 +27,18 @@ namespace OrderManagementAPI.Repositories
         {
             return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
+
+        public async Task<List<UserModel>> GetAllUsersAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
+        public async Task<UserModel> GetUserByIdAsync(int id)
+        {
+            return await _context.Users.FindAsync(id);
+        }
+
+
+       
     }
 }

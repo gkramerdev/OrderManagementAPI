@@ -4,11 +4,13 @@
     {
         public int Id { get; set; }
 
-        public DateTime DateOrder { get; set; }
+        public DateTime DateOrder { get; set; } = DateTime.UtcNow;
+
+        public int UserId { get; set; }
 
         public UserModel User { get; set; }
 
-        public List<ProductModel> Products { get; set; }
+        public List<OrderItemModel> Items { get; set; }
 
 
 

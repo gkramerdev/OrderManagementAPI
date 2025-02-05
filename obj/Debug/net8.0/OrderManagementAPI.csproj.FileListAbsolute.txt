@@ -174,3 +174,4 @@ C:\ws-csharp\OrderManagementAPI\OrderManagementAPI\obj\Debug\net8.0\OrderManagem
 C:\ws-csharp\OrderManagementAPI\OrderManagementAPI\obj\Debug\net8.0\ref\OrderManagementAPI.dll
 C:\ws-csharp\OrderManagementAPI\OrderManagementAPI\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\ws-csharp\OrderManagementAPI\OrderManagementAPI\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+C:\ws-csharp\OrderManagementAPI\OrderManagementAPI\obj\Debug\net8.0\OrderManagementAPI.sourcelink.json
